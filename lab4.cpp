@@ -22,7 +22,7 @@ int main() {
         cout << "n++>m=" << (m++ > n) << endl;
         return 0;
     }
-    // 2.3
+    // 3.1
     #include <iostream>
 #include <math.h>
 using namespace std;
