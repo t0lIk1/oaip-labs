@@ -1,13 +1,13 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
 /*
 Даны действительные числа a,h, натуральное число n.Вычислить:
     (((...((n+a) + a) + a) +....+ a) + a
     └──────┘
      n скобок
 */
-
-#include <iostream>
-#include <math.h>
-using namespace std;
 
 int main()
 {
