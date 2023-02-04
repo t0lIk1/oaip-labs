@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+
 using namespace std;
 
 /*
@@ -18,7 +19,7 @@ int main()
     cin >> n;
     cout << " n=" << n;
 
-    h = pow((a + n), 2);
+    h = pow ((a + n), 2);
     n = n / 2;
         n = n / 2;
 
