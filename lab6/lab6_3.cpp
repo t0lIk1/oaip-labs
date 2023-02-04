@@ -1,13 +1,14 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
 /*
 Даны действительные числа a,h, натуральное число n.Вычислить:
     (((...((n+a) + a) + a) +....+ a) + a
     └──────┘
      n скобок
 */
-
-#include <iostream>
-#include <math.h>
-using namespace std;
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
     cin >> n;
     cout << " n=" << n;
 
-    h = pow((a + n), 2);
+    h = pow ((a + n), 2);
     n = n / 2;
         n = n / 2;
 
