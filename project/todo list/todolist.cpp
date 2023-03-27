@@ -2,6 +2,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+#include <stdlib.h>
 
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 short int x = 1, y = 1;
@@ -18,9 +19,21 @@ int size_w();
 void gotoxy(short int j, short int h);
 void showCursor(bool visible);
 void control(int w, int h);
+void menu2();
 
 int main() {
+
+
+
+
+
 	menu();
+	gotoxy(1, 1);
+	printf("1.create mission");
+	gotoxy(1, 2);
+	printf("2.show mission");
+	gotoxy(1, 3);
+	printf("3.exit");
 	do {
 		w = size_w();
 		h = size_h();
@@ -28,6 +41,7 @@ int main() {
 		system("pause>nul");
 		while (5)control(w, h);
 	} while (1);
+
 
 }
 
@@ -40,17 +54,21 @@ void menu() {
 	int w, h;
 	w = size_w();
 	h = size_h();
-	char** mass = new char* [w];
-	char c[] = "create mission";
+	char** mass = (char**)malloc(w * sizeof(char*));
+
 
 	for (int i = 0; i < w; i++) {
-		mass[i] = new char[h];
+		mass[i] = (char*)malloc(h * sizeof(char));
+
 	}
 
 
-	for (int b = 0; b < h; b++)
-		for (int i = 0; i < w; i++)
+	for (int b = 0; b < h; b++) {
+		for (int i = 0; i < w; i++) {
 			mass[i][b] = ' ';
+
+		}
+	}
 
 	for (int i = 0; i < w; i++) {
 		mass[i][0] = '-';
@@ -59,18 +77,22 @@ void menu() {
 
 	for (int i = 0; i < h; i++) {
 		mass[18][i] = '|';
+
 	}
 
 
 	for (int i = 0; i < h; i++) {
 		mass[0][i] = '|';
 		mass[w - 1][i] = '|';
+
+
 	}
 
 
 	for (int b = 0; b < h; b++)
 		for (int i = 0; i < w; i++)
-			cout << mass[i][b];
+			printf("%c", mass[i][b]);
+
 
 }
 
@@ -127,7 +149,9 @@ void showCursor(bool visible)
 
 void control(int w, int h)
 {
+	int p = 0;
 	char g = _getch();
+
 
 	switch (g)
 	{
@@ -136,32 +160,97 @@ void control(int w, int h)
 		{
 			y--;
 			gotoxy(x, y);
+
+
+
 		}
 		break;
 	case 80:
-		if (y < (h - 5))
+		if (y < (h - 27))
 		{
 			y++;
 			gotoxy(x, y);
+
+
+
 		}
 		break;
 	case 77:
-		if (x != w * 0.3 && x < w * 0.3 * 2)
+		if (x > 1)
 		{
-			x += (w * 0.3);
+			x++;
 			gotoxy(x, y);
 		}
-		else if (x == w * 0.3) {
+		/*else if (x == w * 0.3) {
 			x += (w * 0.3 * 2);
+			gotoxy(x, y);
+		}*/
+		break;
+	case 75:
+		if (x < 1)
+		{
+			x--;
 			gotoxy(x, y);
 		}
 		break;
-	case 75:
-		if (x > 1)
+	case 13:
+		if (y == 2)
 		{
-			x -= (w * 0.3);
-			gotoxy(x, y);
+
+
+		}
+		if (y == 1)
+		{
+			system("cls");
+			menu2();
 		}
 		break;
 	}
+}
+
+
+void menu2() {
+	int w, h;
+	w = size_w();
+	h = size_h();
+	char** mass = (char**)malloc(w * sizeof(char*));
+
+
+	for (int i = 0; i < w; i++) {
+		mass[i] = (char*)malloc(h * sizeof(char));
+
+	}
+
+
+	for (int b = 0; b < h; b++) {
+		for (int i = 0; i < w; i++) {
+			mass[i][b] = ' ';
+
+		}
+	}
+
+	for (int i = 0; i < w; i++) {
+		mass[i][0] = '-';
+		mass[i][h - 1] = '-';
+		mass[i][3] = '-';
+	}
+
+	for (int i = 0; i < h; i++) {
+		mass[15][i] = '|';
+	}
+
+
+	for (int i = 0; i < h; i++) {
+		mass[0][i] = '|';
+		mass[w - 1][i] = '|';
+
+
+	}
+
+
+	for (int b = 0; b < h; b++)
+		for (int i = 0; i < w; i++)
+			printf("%c", mass[i][b]);
+
+
 }
